@@ -7,7 +7,7 @@ Bienvenue dans la documentation d'installation des Services offert par YOméga
 Cliquez-ici pour voir le topic qui vous intéresse directement.
 
 [Installation Ansible](#installation-dansible)<br>
-[Utilisation Docker & Playbook](#utilisation-docker--déploiement-des-playbooks)
+[Utilisation Docker & Playbook](#utilisation-docker--déploiement-des-playbooks)<br>
 [Déployer Wordpress](#déployer-wordpress)
 
 ## Installation d'Ansible

@@ -5,7 +5,7 @@ Bienvenue dans la documentation d'installation du Service 2 Offert par YOméga
 
 ## Installation d'Ansible
 Pour ce projet, vous allez nécéssités 2 Nodes Vagrant ou bien 2 VMs distinctes
- - [Installation d'Ansible et ses modules](https://github.com/Benji290402/Projet_UF_B3/blob/main/install_ansible.sh)
+ - [Installation d'Ansible et ses modules](https://github.com/Benji290402/Projet_UF_B3/blob/main/install_ansible.sh)<br>
 Deux solutions, soit vous cloner le projets et vous executez simplement le script **install_ansible**, soit vous copiez les commandes.
 ```bash
 # Installation de pip3 et d'Ansible

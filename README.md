@@ -209,7 +209,71 @@ Et on devrait pouvoir se connecter en mettant l'adresse ip de notre machine et s
 
 On va désormais passer au déploiement de notre site wordpress, avec une base de donnée MySQL et le conteneur Wordpress
 
-- [Exécution du playbook]()
+- [Exécution du playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/deploywp.yml)
+
+Comme pour le playbook précédent, on va importer le playbook *deploywp.yml*
+
+```bash
+---
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: Create Network
+      community.docker.docker_network:
+        name: wordpress
+
+    - name: Deploy Wordpress
+      community.docker.docker_container:
+        name: wordpress
+        image: wordpress:latest
+        ports:
+          - "80:80"
+        networks:
+          - name: wordpress
+        volumes:
+          - wordpress:/var/www/html
+        env:
+          WORDPRESS_DB_HOST: "db"
+          WORDPRESS_DB_USER: "exampleuser"
+          WORDPRESS_DB_PASSWORD: "examplepass"
+          WORDPRESS_DB_NAME: "exampledb"
+        restart_policy: always
+
+    - name: Deploy MYSQL
+      community.docker.docker_container:
+        name: db
+        image: mysql:5.7
+        ports:
+          - "3306:3306"
+        networks:
+          - name: wordpress
+        volumes:
+          - db:/var/lib/mysql
+        env:
+          MYSQL_DATABASE: "exampledb"
+          MYSQL_USER: "exampleuser"
+          MYSQL_PASSWORD: "examplepass"
+          MYSQL_RANDOM_ROOT_PASSWORD: '1'
+        restart_policy: always
+```
+
+On effectue la commande : 
+```bash
+ansible-playbook -i ini.inv deploywp.yml
+```
+Pour finir on essaie d'afficher les conteneurs qui tournent : 
+```bash
+sudo docker ps
+```
+Et voici la sortie que l'on devrait obtenir, 
+```bash
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS         PORTS                                                      NAMES
+636ed024935f   mysql:5.7                "docker-entrypoint.s…"   4 minutes ago   Up 4 minutes   0.0.0.0:3306->3306/tcp, 33060/tcp                          db
+b2bb267f7464   wordpress:latest         "docker-entrypoint.s…"   4 minutes ago   Up 4 minutes   0.0.0.0:80->80/tcp                                         wordpress
+```
+Pour conclure on se lance dans l'installation de Wordpress depuis notre navigateur et le tour est joué ! 
+
 **Merci d'avoir suivi ce tutoriel d'installation.** 
 
 

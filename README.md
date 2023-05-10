@@ -16,7 +16,7 @@ pip3 install ansible
 # Installation de la collection Docker de la communauté Ansible
 ansible-galaxy collection install community.docker
 ```
- - [Création des Clés SSH](https://github.com/matiassingers/awesome-readme)
+ - [Création des Clés SSH]
 Une fois ansible installer vous pouvez voir la version qui est installer sur ansible avec la commande 
 ```bash
 ansible --version

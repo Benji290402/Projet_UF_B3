@@ -7,7 +7,7 @@ Bienvenue dans la documentation d'installation du Service 2 Offert par YOméga
 Cliquez-ici pour voir le topic qui vous interesse directement
 
 [Installation Ansible](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#installation-dansible)<br>
-[Utilisation Docker & Playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#utilisation-docker--d%C3%A9ploiement-des-playbooks)
+[Utilisation Docker & Playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#installation-dansible)
 
 
 ## Installation d'Ansible
@@ -107,3 +107,102 @@ Docker version 20.10.21, build 20.10.21-0ubuntu1~20.04.2
 On va pouvoir passer à l'installation & l'utilisation de Docker
 
 ## Utilisation Docker & Déploiement des playbooks
+On va maintenant pouvoir exploiter Ansible et notre environement Docker, pour cela on va utiliser deux applications conteneuriser qui vont nous faciliter l'exploitation de notre environement, à savoir **Portainer** et **Watchtower**
+- [Execution de votre premier playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/portainerinstall.yml)
+
+```yaml
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: Deploy Portainer
+      community.docker.docker_container:
+        name: portainer
+        image: portainer/portainer-ce
+        ports:
+          - "9000:9000"
+          - "8000:8000"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - portainer_data:/data
+        restart_policy: always
+
+      name: Deploy Watchtower
+      community.docker.docker_container:
+        name: watchtower
+        image: containrrr/watchtower
+        command: --schedule "0 0 4 * * *" --debug
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+        restart_policy: always
+```
+
+On va pouvoir executer le playbook, toujours avec la meme commande, on cible juste notre nouveau fichier yaml
+
+```bash
+ansible-playbook -i inv.ini portainerinstall.yml
+```
+
+Ensuite on se rends notre deuxième noeud, et on execute la commande 
+
+```bash
+sudo docker ps -a
+```
+Et on devrait avoir comme sortie
+
+```bash
+CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS          PORTS                                                      NAMES
+1f4e00571380   containrrr/watchtower    "/watchtower --sched…"   14 minutes ago   Up 14 minutes   8080/tcp                                                   watchtower
+7a39fdc4d9e6   portainer/portainer-ce   "/portainer"             17 minutes ago   Up 17 minutes   0.0.0.0:8000->8000/tcp, 0.0.0.0:9000->9000/tcp, 9443/tcp   portainer
+```
+On peut se connecter sur notre navigateur à Portainer et commencer à créer le compte utilisateur admin. Cette application est extremement pratique pour visualiser l'infrastructure conteneuriser.
+
+- [Déploiement du conteneur Nextcloud](https://github.com/Benji290402/Projet_UF_B3/blob/main/deploynxt.yml)
+
+On va récuperer le fichier *deploynxt.yml*
+
+```yaml
+---
+- hosts: all
+  become: yes
+  vars:
+    db_volume: mariadb
+    nextcloud: nextcloud
+  tasks:
+    - name: Deploy MariaDB server
+      docker_container:
+        image: mariadb
+        name: mariadb
+        volumes:
+          - "{{db_volume}}:/var/lib/mysql"
+        env:
+          MYSQL_ROOT_PASSWORD: somerootpassword #Mettez un mot de passe fort
+          MYSQL_PASSWORD: somemysqlpassword #Mettez votre mot de passe
+          MYSQL_DATABASE: db
+          MYSQL_USER: mysqluser #Changez si vous le souhaitez
+    - name: Deploy Nextcloud
+      docker_container:
+        image: nextcloud
+        name: nextcloud
+        restart_policy: always
+        ports:
+          - 80:80
+        links:
+          - "{{db_volume}}:/var/lib/mysql"
+        volumes:
+          - "{{nextcloud}}:/var/www/html"
+        env:
+          MYSQL_PASSWORD: somemysqlpassword #Identique a celui dans la variable Env
+          MYSQL_DATABASE: db
+          MYSQL_USER: mysqluser #Identique a celui dans la variable Env
+          MYSQL_HOST: mariadb
+```
+On éxécute le playbook :
+
+```bash
+ansible-playbook -i inv.ini deploynxt.yml
+```
+
+Et on devrait pouvoir se connecter en mettant l'adresse ip de notre machine et son port!
+
+**Merci d'avoir suivis ce tutoriel d'installation.** 

@@ -31,6 +31,6 @@ Ensuite vous pouvez poussez votre clé via SSH dans votre deuxième noeud, VM
 ```bash
 ssh-copy-id user@ip-de-votre-node
 ```
- - [Mise en place de l'inventaire](https://github.com/Benji290402/Projet_UF_B3/blob/main/inv.ini)
+ - [Mise en place de l'inventaire](https://github.com/Benji290402/Projet_UF_B3/blob/main/inv.ini)<br>
 Une fois les clés SSH exporter, on va mettre en place notre Inventaire
 

@@ -11,7 +11,8 @@ sudo apt install -y python3-pip
 pip3 install ansible
 
 # Installation de la collection Docker de la communauté Ansible
-ansible-galaxy collection install community.docker
+ansible-galaxy collection install community.docker```
+
 ```shell
 ssh-keygen
 

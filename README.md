@@ -7,7 +7,7 @@ Bienvenue dans la documentation d'installation du Service 2 Offert par YOméga
 Cliquez-ici pour voir le topic qui vous interesse directement
 
 [Installation Ansible](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#installation-dansible)<br>
-[Utilisation Docker & Playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#installation-dansible)
+[Utilisation Docker & Playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#utilisation-docker--d%C3%A9ploiement-des-playbooks)
 
 
 ## Installation d'Ansible

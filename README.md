@@ -1,3 +1,4 @@
+
 # Projet B3 UF
 Bienvenue dans la documentation d'installation des Services offert par YOméga
 
@@ -5,9 +6,9 @@ Bienvenue dans la documentation d'installation des Services offert par YOméga
 
 Cliquez-ici pour voir le topic qui vous intéresse directement.
 
-[Installation Ansible](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#installation-dansible)<br>
-[Utilisation Docker & Playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/README.md#installation-dansible)
-
+[Installation Ansible](#installation-dansible)<br>
+[Utilisation Docker & Playbook](#utilisation-docker--déploiement-des-playbooks)
+[Déployer Wordpress](#déployer-wordpress)
 
 ## Installation d'Ansible
 Pour ce projet, vous allez avoir besoin au choix de 2 Nodes Vagrant ou bien de 2 VMs distinctes
@@ -204,4 +205,11 @@ ansible-playbook -i inv.ini deploynxt.yml
 
 Et on devrait pouvoir se connecter en mettant l'adresse ip de notre machine et son port!
 
+## Déployer Wordpress
+
+On va désormais passer au déploiement de notre site wordpress, avec une base de donnée MySQL et le conteneur Wordpress
+
+- [Exécution du playbook]()
 **Merci d'avoir suivi ce tutoriel d'installation.** 
+
+

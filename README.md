@@ -5,7 +5,7 @@ Bienvenue dans la documentation d'installation du Service 2 Offert par YOméga
 
 ## Installation d'Ansible
 Pour ce projet, vous allez nécéssités 2 Nodes Vagrant ou bien 2 VMs distinctes
- - [Installation d'Ansible et ses modules](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+ - [Installation d'Ansible et ses modules](https://github.com/Benji290402/Projet_UF_B3/blob/main/install_ansible.sh)
 Deux solutions, soit vous cloner le projets et vous executez simplement le script **install_ansible**, soit vous copiez les commandes.
 ```bash
 # Installation de pip3 et d'Ansible
@@ -16,7 +16,7 @@ pip3 install ansible
 # Installation de la collection Docker de la communauté Ansible
 ansible-galaxy collection install community.docker
 ```
- - [Création des Clés SSH]
+ - [Création des Clés SSH](
 Une fois ansible installer vous pouvez voir la version qui est installer sur ansible avec la commande 
 ```bash
 ansible --version

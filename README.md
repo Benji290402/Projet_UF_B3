@@ -26,7 +26,7 @@ Donc vous devez utiliser des Clés SSH pour pouvoir comuniquer avec Ansible de m
 ssh-keygen
 ```
 **Il est important de mettre une passphrase sécurisée** <br>
-![App Screenshot](https://github.com/Benji290402/Projet_UF_B3/blob/main/sc12.PNG)
+![App Screenshot](https://github.com/Benji290402/Projet_UF_B3/blob/main/sc12.PNG)<br>
 Ensuite vous pouvez poussez votre clé via SSH dans votre deuxième noeud, VM
 ```bash
 ssh-copy-id user@ip-de-votre-node

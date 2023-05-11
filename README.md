@@ -69,11 +69,11 @@ On va pouvoir désormais s'occuper du deuxième Node / VM qui est vierge. Pour c
   - name: install prerequisites
     apt:
       name:
-        - docker.io
+        - docker.io            #Reviens a faire un apt install docker.io
       update_cache: yes
 
   - name: add user permissions
-    shell: "usermod -aG babou {{ ansible_env.SUDO_USER }}"
+    shell: "usermod -aG babou {{ ansible_env.SUDO_USER }}"  #Modifier "babou" par votre utilisateur
 
   - name: Reset ssh connection for changes to take effect
     meta: "reset_connection"

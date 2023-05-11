@@ -28,7 +28,7 @@ Une fois Ansible installé vous pouvez voir la version qui est installée sur An
 ```bash
 ansible --version
 ```
-Donc vous devez utiliser des Clés SSH pour pouvoir comuniquer avec Ansible de manière sécurisée, pour se faire,
+Donc vous devez utiliser des Clés SSH pour pouvoir comuniquer avec Ansible de manière sécurisée,
 ```bash
 ssh-keygen
 ```

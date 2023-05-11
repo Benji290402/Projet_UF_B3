@@ -108,7 +108,7 @@ On va pouvoir passer à l'installation & l'utilisation de Docker
 
 ## Utilisation Docker & Déploiement des playbooks
 On va maintenant pouvoir exploiter Ansible et notre environement Docker, pour cela on va utiliser deux applications conteneurisées qui vont nous faciliter l'exploitation de notre environement, à savoir **Portainer** et **Watchtower**
-- [Exécution de votre premier playbook](https://github.com/Benji290402/Projet_UF_B3/blob/main/portainerinstall.yml)
+- [Déploiement de Portainer et Watchtower](https://github.com/Benji290402/Projet_UF_B3/blob/main/portainerinstall.yml)
 
 ```yaml
 - hosts: all
@@ -213,7 +213,7 @@ On va désormais passer au déploiement de notre site wordpress, avec une base d
 
 Comme pour le playbook précédent, on va importer le playbook *deploywp.yml*
 
-```bash
+```yaml
 ---
 - hosts: all
   become: yes
